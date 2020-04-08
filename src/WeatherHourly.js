@@ -23,11 +23,12 @@ class WeatherHourly extends Component {
     var cityKey="";
     try {
     var city = e[0].split("-");
-      axios.get(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${city[0]}&language=es-es`)
+      axios.get(`http://localhost:8080/weather/city/${city[0]}`)
       .then((response) => {
         cityKey=response.data[0].Key;
-    axios.get(`http://dataservice.accuweather.com/forecasts/v1/hourly/12hour/${cityKey}?apikey=${apiKey}&language=es-es&metric=true`)
+    axios.get(`http://localhost:8080/weather/hourly/${cityKey}`)
       .then((response) => {
+        console.log(response.data);
         var obj = JSON.parse(response.request.responseText);
         this.setState({ post: obj});
       })

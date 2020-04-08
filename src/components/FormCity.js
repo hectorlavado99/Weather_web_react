@@ -31,11 +31,12 @@ return (
 function searchCity(city,setMessage){
 
   if (city) {
-    axios.get(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${city}&language=es-es`)
+    axios.get(`http://localhost:8080/weather/city/${city}`)
     .then((response) => {
       var ressult = response.data;
        options = ressult.map(ressult =>  `${ressult.LocalizedName}-${ressult.Country.LocalizedName}`);
        setMessage(options);
+       console.log(ressult);
     })
   } else return;
 

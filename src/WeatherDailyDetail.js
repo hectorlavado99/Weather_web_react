@@ -25,10 +25,10 @@ saveCity = (e) => {
   var cityKey="";
   try {
     var city = e[0].split("-");
-    axios.get(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apiKey}&q=${city[0]}&language=es-es`)
+    axios.get(`http://localhost:8080/weather/city/${city[0]}`)
     .then((response) => {
       cityKey=response.data[0].Key;
-      axios.get(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${apiKey}&language=es-es&metric=true`)
+      axios.get(`http://localhost:8080/weather/daily/${cityKey}`)
       .then((response) => {
         var obj = JSON.parse(response.request.responseText);
         this.setState({ post: obj.DailyForecasts});
