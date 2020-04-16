@@ -70,5 +70,4 @@ post.map(post =>
   }
 };
 
-
 export default WeatherHourly;
